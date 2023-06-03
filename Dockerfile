@@ -5,5 +5,5 @@ RUN cargo install --path .
 
 FROM postgres
 COPY --from=build-rust /usr/local/cargo/bin/dump /usr/local/bin/dump
-EXPOSE 5433
+EXPOSE 8080
 RUN sed -i '2idump &' /usr/local/bin/docker-entrypoint.sh
