@@ -5,6 +5,7 @@ use actix_web::{App, get, HttpResponse, HttpServer, Responder};
 #[get("/")]
 async fn dump() -> impl Responder {
     let dump = Command::new("pg_dump")
+        .args(["-U", "postgres"])
         .output()
         .expect("pg_dump failed");
     HttpResponse::Ok().body(dump.stdout)
